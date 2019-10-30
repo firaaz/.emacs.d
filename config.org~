@@ -1,0 +1,45 @@
+#+TITLE: Emacs config
+#+AUTHOR: Firaaz
+
+#+OPTION: num:nil
+
+#+PROPERTY: header-args :results silent
+
+* SETUP
+  
+  ** Setup repos
+  we are going to be using melpa and elpa
+#+BEGIN_SRC emacs-lisp
+  (setq package-enable-at-startup nil
+	package-archives '(("elpa" . "https://elpa.gnu.org/packages/")
+			  ("melpa" . "https://melpa.org/packages/")))
+#+END_SRC
+
+** bootstraps
+#+NAME: use-package
+#+BEGIN_SRC emacs-lisp
+  (unless (package-installed-p 'use-package)
+    (package-refresh-contents)
+    (package-install 'use-package))
+  (require 'use-package)
+  (require 'use-package-ensure)
+  (setq use-package-always-ensure t)
+#+END_SRC
+
+** Prefrences
+*** Display
+#+NAME: bar-disable
+#+BEGIN_SRC emacs-lisp
+  (menu-bar-mode -1)
+  (scroll-bar-mode -1)
+  (tool-bar-mode -1)
+#+END_SRC
+
+#+NAME: theme
+#+BEGIN_SRC emacs-lisp 
+  (use-package doom-themes
+    : config (load-theme 'doom-dracula: t))
+#+END_SRC
+
+* PACKAGES
+* KEYBINDINGS

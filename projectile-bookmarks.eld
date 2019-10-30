@@ -1,0 +1,1 @@
+("~/projects/driver/" "~/projects/rust/os/")

@@ -7,7 +7,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (apropospriate-theme evil-unimpaired evil-surround quelpa-use-package quelpa all-the-icons treemacs-magit treemacs-projectile treemacs-evil treemacs smartparens rainbow-delimiters beacon helm-spotify-plus yasnippet-snippets yasnippet evil-matchit evil-magit evil-goggles helm-smex helm-fuzzier helm-flx helm-swoop smex evil-collection evil evil-mode company-box company-lsp lsp-ui lsp-mode company helm-projectile general helm magit which-key rtags use-package doom-themes))))
+    (evil-commentary apropospriate-theme evil-unimpaired evil-surround quelpa-use-package quelpa all-the-icons treemacs-magit treemacs-projectile treemacs-evil treemacs smartparens rainbow-delimiters beacon helm-spotify-plus yasnippet-snippets yasnippet evil-matchit evil-magit evil-goggles helm-smex helm-fuzzier helm-flx helm-swoop smex evil-collection evil evil-mode company-box company-lsp lsp-ui lsp-mode company helm-projectile general helm magit which-key rtags use-package doom-themes))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

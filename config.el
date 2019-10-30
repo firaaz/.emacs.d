@@ -84,6 +84,10 @@
   :config
   (global-evil-surround-mode 1))
 
+(use-package evil-commentary
+  :config
+  (evil-commentary-mode))
+
 (use-package flycheck
   :init (global-flycheck-mode))
 
@@ -220,4 +224,5 @@
    "C-x g" 'magit-status
    "M-p" 'projectile-command-map
    "C-x C-f" 'helm-find-files
-   "C-;" 'helm-imenu))
+   "C-;" 'helm-imenu
+   "C-x m" 'helm-spotify-plus))

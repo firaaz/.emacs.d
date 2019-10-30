@@ -11,7 +11,9 @@
 #+BEGIN_SRC emacs-lisp
   (setq package-enable-at-startup nil
         package-archives '(("elpa" . "https://elpa.gnu.org/packages/")
-                          ("melpa" . "https://melpa.org/packages/")))
+                           ("melpa" . "https://melpa.org/packages/"))
+        package-archive-priorities
+        '(("elpa" . 5) ("melpa" . 10)))
 #+END_SRC
 
 ** bootstraps
@@ -126,6 +128,10 @@
   (use-package evil-surround
     :config
     (global-evil-surround-mode 1))
+
+  (use-package evil-commentary
+    :config
+    (evil-commentary-mode))
 #+END_SRC
 ** flycheck
 #+begin_src emacs-lisp
@@ -308,5 +314,6 @@
      "C-x g" 'magit-status
      "M-p" 'projectile-command-map
      "C-x C-f" 'helm-find-files
-     "C-;" 'helm-imenu))
+     "C-;" 'helm-imenu
+     "C-x m" 'helm-spotify-plus))
 #+END_SRC

@@ -5,31 +5,26 @@
 #+PROPERTY: header-args :results silent
 
 * SETUP
-  
 ** Setup repos
   we are going to be using melpa and elpa
 #+BEGIN_SRC emacs-lisp
-  (setq package-enable-at-startup nil
-        package-archives '(("elpa" . "https://elpa.gnu.org/packages/")
-                           ("melpa" . "https://melpa.org/packages/"))
-        package-archive-priorities
-        '(("elpa" . 5) ("melpa" . 10)))
+(setq package-enable-at-startup nil
+      package-archives '(("elpa" . "https://elpa.gnu.org/packages/")
+                         ("melpa" . "https://melpa.org/packages/"))
+      package-archive-priorities
+      '(("elpa" . 5) ("melpa" . 10)))
 #+END_SRC
 
 ** bootstraps
 #+NAME: use-package
 #+BEGIN_SRC emacs-lisp
-  (unless (package-installed-p 'use-package)
-    (package-refresh-contents)
-    (package-install 'use-package))
-  (require 'use-package)
-  (require 'use-package-ensure)
-  (setq use-package-always-ensure t)
-
-  (use-package quelpa
-    :init (setq quelpa-upgrade-p t))
-  (use-package quelpa-use-package) 
-#+END_SRC
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+(require 'use-package)
+(require 'use-package-ensure)
+(setq use-package-always-ensure t)
+ #+END_SRC
 
 ** Prefrences
 *** Display
@@ -51,7 +46,7 @@
 #+BEGIN_SRC emacs-lisp 
   (use-package doom-themes
     :config
-    (load-theme 'doom-gruvbox t))
+    (load-theme 'doom-solarized-dark))
 #+END_SRC
 
 *** Misc
@@ -132,6 +127,10 @@
   (use-package evil-commentary
     :config
     (evil-commentary-mode))
+
+  (use-package evil-snipe
+    :config
+    (evil-snipe-mode +1))
 #+END_SRC
 ** flycheck
 #+begin_src emacs-lisp
@@ -157,24 +156,34 @@
     (setq helm-follow-mode-persistent t
           helm-autoresize-max-height 40
           helm-display-header-line nil
-          helm-display-header-line nil)
-
-    :config
-    (require 'helm-config)
-    (helm-autoresize-mode t)
-    (add-hook 'helm-minibuffer-set-up-hook 'helm-hide-minibuffer-maybe)
-    (helm-mode t)
-    (helm-flx-mode 1)
-    (helm-fuzzier-mode 1))
-
-  (use-package smex)
-  (use-package helm-swoop)
-  (use-package helm-flx)
-  (use-package helm-fuzzier)
-  (use-package helm-smex)
-  (use-package dash)
+          helm-display-header-line nil))
+;
+;    :config
+;    (require 'helm-config)
+;    (helm-autoresize-mode t)
+;    (add-hook 'helm-minibuffer-set-up-hook 'helm-hide-minibuffer-maybe)
+;    (helm-mode t)
+;    (helm-flx-mode 1)
+;    (helm-fuzzier-mode 1))
+;
+;  (use-package smex)
+;  (use-package helm-swoop)
+;  (use-package helm-flx)
+;  (use-package helm-fuzzier)
+;  (use-package helm-smex)
+;  (use-package dash)
 #+END_SRC
 
+** ivy/counsel
+#+BEGIN_SRC emacs-lisp
+  (use-package counsel
+    :config
+    (ivy-mode 1))
+  (use-package ivy
+    :config
+    (setq ivy-use-virtual-buffers t
+          ivy-count-format "%d/%d "))
+#+END_SRC
 ** projectile
    #+NAME: projectile
    #+BEGIN_SRC emacs-lisp
@@ -192,7 +201,7 @@
     (setq company-require-match 'never
           company-minimum-prefix-lenght 2
           company-tooltip-align-annotations t
-          company-idle-delay 1
+          company-idle-delay 0.5
           company-tooltip-limit 20
           global-company-mode t))
 #+END_SRC
@@ -306,14 +315,30 @@
 * KEYBINDINGS
 #+NAME: keybindings
 #+BEGIN_SRC emacs-lisp
-  (use-package general
-    :config
-    (general-define-key
-     "M-x" 'helm-smex
-     "M-c" 'helm-smex-major-mode-commands
-     "C-x g" 'magit-status
-     "M-p" 'projectile-command-map
-     "C-x C-f" 'helm-find-files
-     "C-;" 'helm-imenu
-     "C-x m" 'helm-spotify-plus))
+  (use-package general)
+
+  (general-create-definer my-leader-def
+    :prefix "SPC")
+
+  (general-create-definer my-local-leader-def
+    :prefix "SPC m")
+
+  (general-define-key
+      "C-x C-f" 'ido-find-file
+      "C-x g" 'magit-status
+      "M-p" 'projectile-command-map
+      "C-," 'evil-commentary-line)
+
+
+  (general-define-key
+   :states '(motion normal)
+   "s" 'evil-snipe-s
+   "S" 'evil-snipe-S)
+
+  (my-leader-def
+    :keymaps 'normal
+    "o s" 'helm-spotify-plus
+    "o m" 'counsel-rhythmbox
+    "g" 'magit-status
+    "f" 'counsel-find-file)
 #+END_SRC

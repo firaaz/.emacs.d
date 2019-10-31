@@ -47,6 +47,10 @@
   (use-package doom-themes
     :config
     (load-theme 'doom-solarized-dark))
+
+  (use-package doom-modeline
+    :hook
+    (after-init . doom-modeline-mode))
 #+END_SRC
 
 *** Misc

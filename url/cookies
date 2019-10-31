@@ -1,14 +1,0 @@
-;; Emacs-W3 HTTP cookies file
-;; Automatically generated file!!! DO NOT EDIT!!!
-
-(setq url-cookie-storage
- 'nil)
-(setq url-cookie-secure-storage
- '(("accounts.spotify.com"
-  [url-cookie "__Host-device_id" "AQBWQScLnwk4BMvg676--4fCZWVNMqoAWim6rv8PioB0MM7dWtPT1RbuvoyQmdvDFNA5pq8kmNg7ttC9gYi9gae_m_XK-w45YuA" "Mon Nov 17 07:21:36 2087 GMT" "/" "accounts.spotify.com" t]))
-)
-
-;; Local Variables:
-;; version-control: never
-;; no-byte-compile: t
-;; End:

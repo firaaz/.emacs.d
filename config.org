@@ -44,9 +44,7 @@
 #+END_SRC
 #+NAME: theme
 #+BEGIN_SRC emacs-lisp 
-  (use-package doom-themes
-    :config
-    (load-theme 'doom-solarized-dark))
+  (use-package doom-themes)
 
   (use-package doom-modeline
     :hook
@@ -283,12 +281,24 @@
     :config (beacon-mode 1))
 
   (use-package rainbow-delimiters
-    :hook 'prog-mode-hook)
+    :init
+    (progn
+      (add-hook 'prog-mode-hook (lambda() (rainbow-delimiters-mode t)))
+      (add-hook 'org-mode-hook (lambda() (rainbow-delimiters-mode t)))))
 
   (use-package smartparens
-    :hook
-    ('prog-mode-hook #'smartparens-mode)
-    ('lisp-mode-hook #'smartparens-strict-mode))
+    :init
+    (progn
+      (add-hook 'prog-mode-hook (lambda() (smartparens-mode t)))
+      (add-hook 'lisp-mode-hook (lambda() (smartparens-strict-mode t))))
+    :config
+    (require 'smartparens-config))
+#+END_SRC
+** aggresive indent
+#+BEGIN_SRC emacs-lisp
+  (use-package aggressive-indent
+    :init
+    (add-hook 'prog-mode (lambda() (aggressive-indent-mode))))
 #+END_SRC
 ** language specifics
 *** python

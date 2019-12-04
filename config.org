@@ -148,6 +148,40 @@
     :after flycheck
     :config (flycheck-pos-tip-mode))
 #+end_src
+** lsp
+#+NAME: lsp-mode
+#+BEGIN_SRC emacs-lisp
+  (use-package lsp-mode
+	:hook
+	((python-mode . lsp)
+	 (c-mode . lsp)
+	 (java-mode . lsp)
+	 (sh-mode . lsp)
+	 (scala-mode . lsp))
+
+	:config
+	(setq lsp-prefer-flymake nil
+		  lsp-enable-snippet t
+		  lsp-auto-execute-action t
+		  lsp-eldoc-render-all t
+		  lsp-enable-completion-at-point t
+		  lsp-enable-xref t
+		  lsp-enable-indentation t))
+
+  (use-package lsp-ui
+	:after lsp-mode
+	:hook
+	(lsp-mode . lsp-ui-mode))
+
+  (use-package company-lsp
+	:after '(company lsp-mode)
+	:config
+	(setq company-lsp-cache-candidates t
+		  company-lsp-async t
+		  company-lsp-enable-snippet t)
+	(push 'company-lsp company-backends))
+
+#+END_SRC
 
 ** magit
 #+NAME: magit
@@ -211,40 +245,6 @@
           company-idle-delay 0.5
           company-tooltip-limit 20
           global-company-mode t))
-#+END_SRC
-** lsp
-#+NAME: lsp-mode
-#+BEGIN_SRC emacs-lisp
-  (use-package lsp-mode
-	:hook
-	((python-mode . lsp)
-	 (c-mode . lsp)
-	 (java-mode . lsp)
-	 (sh-mode . lsp)
-	 (scala-mode . lsp))
-
-	:config
-	(setq lsp-prefer-flymake nil
-		  lsp-enable-snippet t
-		  lsp-auto-execute-action t
-		  lsp-eldoc-render-all t
-		  lsp-enable-completion-at-point t
-		  lsp-enable-xref t
-		  lsp-enable-indentation t))
-
-  (use-package lsp-ui
-	:after lsp-mode
-	:hook
-	(lsp-mode . lsp-ui-mode))
-
-  (use-package company-lsp
-	:after '(company lsp-mode)
-	:config
-	(setq company-lsp-cache-candidates t
-		  company-lsp-async t
-		  company-lsp-enable-snippet t)
-	(push 'company-lsp company-backends))
-
 #+END_SRC
 ** yasnippet
 #+NAME: yasnippet
@@ -362,17 +362,16 @@
   (use-package general)
 
   (general-create-definer my-leader-def
-    :prefix "SPC")
+	:prefix "SPC")
 
   (general-create-definer my-local-leader-def
-    :prefix "SPC m")
+	:prefix "SPC m")
 
   (general-define-key
-      "C-x C-f" 'ido-find-file
-      "C-x g" 'magit-status
-      "M-p" 'projectile-command-map
-      "C-," 'evil-commentary-line)
-
+	  "C-x C-f" 'ido-find-file
+	  "C-x g" 'magit-status
+	  "M-p" 'projectile-command-map
+	  "C-," 'evil-commentary-line)
 
   (general-define-key
    :states '(motion normal)
@@ -380,10 +379,12 @@
    "S" 'evil-snipe-S)
 
   (my-leader-def
-    :keymaps 'normal
-    "o s" 'helm-spotify-plus
-    "o m" 'counsel-rhythmbox
-    "t i" 'aggressive-indent-mode
-    "t a" 'company-mode
-    "g" 'magit-status)
+	:keymaps 'normal
+	"o s" 'helm-spotify-plus
+	"o m" 'counsel-rhythmbox
+	"t i" 'aggressive-indent-mode
+	"t a" 'company-mode
+	"t t" 'treemacs
+	"g" 'magit-status
+	"." 'counsel-find-file)
 #+END_SRC

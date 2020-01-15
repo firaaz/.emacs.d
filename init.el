@@ -1,26 +1,49 @@
-(package-initialize)
-(org-babel-load-file "~/.emacs.d/config.org")
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-enabled-themes (quote (doom-solarized-dark)))
- '(custom-safe-themes
-   (quote
-	("428754d8f3ed6449c1078ed5b4335f4949dc2ad54ed9de43c56ea9b803375c23" default)))
- '(package-selected-packages
-   (quote
-	(org-bullets evil-org org-pdfview pdf-tools try general rustic web-mode js2-mode lsp-java lsp-python-ms smartparens rainbow-delimiters beacon treemacs-magit treemacs-projectile treemacs-evil treemacs helm-spotify-plus yasnippet-snippets yasnippet company-lsp lsp-ui lsp-mode company helm-projectile counsel helm flycheck-pos-tip flycheck evil-snipe evil-commentary evil-surround evil-matchit evil-magit evil-goggles evil-collection evil which-key doom-modeline doom-themes use-package rtags))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(evil-goggles-change-face ((t (:inherit diff-removed))))
- '(evil-goggles-delete-face ((t (:inherit diff-removed))))
- '(evil-goggles-paste-face ((t (:inherit diff-added))))
- '(evil-goggles-undo-redo-add-face ((t (:inherit diff-added))))
- '(evil-goggles-undo-redo-change-face ((t (:inherit diff-changed))))
- '(evil-goggles-undo-redo-remove-face ((t (:inherit diff-removed))))
- '(evil-goggles-yank-face ((t (:inherit diff-changed)))))
+(defvar file-name-handler-alist-old file-name-handler-alist)
+
+;; startup optimizations
+(setq package-enable-at-startup nil
+      file-name-handler-alist nil
+      message-log-max 16384
+      gc-cons-threshold 402653184
+      gc-cons-percentage 0.6
+      auto-window-vscroll nil
+      package--init-file-ensured t)
+
+(add-hook 'after-init-hook
+          `(lambda ()
+             (setq file-name-handler-alist file-name-handler-alist-old
+                   gc-cons-threshold 800000
+                   gc-cons-percentage 0.1)) t)
+
+(setq straight-use-package-by-default t)
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+      (bootstrap-version 5))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
+
+;; use-package
+(straight-use-package 'use-package)
+
+;; Load all files from my ~/.emacs.d/config directory
+;; It doesn't support nested dirs
+(dolist
+    (file
+     (directory-files
+      (concat (expand-file-name user-emacs-directory) "config")
+      t
+      "^.[^#].+el$"))
+  (load-file file))
+
+;; change where the auto config bullshit is put and read from there
+(setq custom-file
+      (concat (file-name-directory user-init-file) "custom-variables.el"))
+(when (file-exists-p custom-file)
+  (load custom-file))

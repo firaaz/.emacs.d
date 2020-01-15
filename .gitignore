@@ -4,7 +4,10 @@
 /.emacs.desktop
 /.emacs.desktop.lock
 *.elc
-auto-save-list
+/auto-save-list/
+/autosave/
+/straight/
+/transient/
 tramp
 .\#*
 

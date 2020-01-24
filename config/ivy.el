@@ -4,12 +4,9 @@
   :init
   (setq ivy-initial-inputs-alist nil)
   :config
-  (ivy-mode 1))
-
-(use-package swiper
-  :after ivy)
+  (ivy-mode))
 
 (use-package counsel
-  :after swiper
+  :after ivy
   :config
   (counsel-mode))

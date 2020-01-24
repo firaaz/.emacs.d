@@ -5,7 +5,8 @@
       use-dialog-box nil                ; no gui popups dammit!
       echo-keystrokes 0.5               ; echo keystrokes faster
       confirm-kill-processes nil        ; just kill the process
-      disabled-command-function nil)    ; enable all commands
+      disabled-command-function nil     ; enable all commands
+      inhibit-startup-screen t)         ; remove the emacs start screen
 
 (menu-bar-mode -1)                      ; menu-bar is gone
 (tool-bar-mode -1)                      ; tool-bar is gone
@@ -15,7 +16,7 @@
 (column-number-mode t)                  ; show column numbers
 
 (winner-mode t)
-(defalias 'yes-or-no-p 'y-or-n-p)
+(defalias 'yes-or-no-p 'y-or-n-p)	; use y or n for minibuffer
 
 (setq backup-directory-alist '(("." . "~/.emacs.d/backups"))
       delete-old-versions -1
@@ -36,3 +37,20 @@
       recentf-max-saved-items 50)
 (savehist-mode 1)
 (recentf-mode 1)
+
+;; to try package and without it persisting
+(use-package try)
+
+(use-package editorconfig
+  :config
+  :hook (prog-mode . editorconfig-mode))
+(setq-default
+ vc-follow-symlinks t
+ save-interprogram-paste-before-kill t
+ fill-column 80
+ sentence-end-double-space nil
+ word-wrap t
+ indent-tabs-mode nil
+ require-final-newline t
+ tab-always-indent t
+ tab-width 4)

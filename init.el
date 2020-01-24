@@ -1,6 +1,6 @@
 (defvar file-name-handler-alist-old file-name-handler-alist)
 
-;; startup optimizations
+;; startup optimzations
 (setq package-enable-at-startup nil
       file-name-handler-alist nil
       message-log-max 16384
@@ -10,10 +10,10 @@
       package--init-file-ensured t)
 
 (add-hook 'after-init-hook
-          `(lambda ()
-             (setq file-name-handler-alist file-name-handler-alist-old
-                   gc-cons-threshold 800000
-                   gc-cons-percentage 0.1)) t)
+	  `(lambda ()
+	     (setq file-name-handler-alist file-name-handler-alist-old
+		   gc-cons-threshold 800000
+		   gc-cons-percentage 0.1)) t)
 
 (setq straight-use-package-by-default t)
 (defvar bootstrap-version)
@@ -32,8 +32,6 @@
 ;; use-package
 (straight-use-package 'use-package)
 
-;; Load all files from my ~/.emacs.d/config directory
-;; It doesn't support nested dirs
 (dolist
     (file
      (directory-files

@@ -1,4 +1,5 @@
 # -*- mode: gitignore; -*-
+
 *~
 \#*\#
 /.emacs.desktop
@@ -10,6 +11,10 @@
 /transient/
 tramp
 .\#*
+/backups/
+/eshell/
+recentf
+savehist
 
 # Org-mode
 .org-id-locations
@@ -43,9 +48,13 @@ flycheck_*.el
 
 # projectiles files
 .projectile
+projectile-bookmarks.eld
 
 # directory configuration
 .dir-locals.el
 
 # network security
 /network-security.data
+
+# lsp
+.lsp-session-v*

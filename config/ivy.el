@@ -1,8 +1,6 @@
 ;;; -*- lexical-binding: t -*-
 
 (use-package ivy
-  :init
-  (setq ivy-initial-inputs-alist nil)
   :config
   (ivy-mode))
 
@@ -10,3 +8,6 @@
   :after ivy
   :config
   (counsel-mode))
+
+(setq ivy-initial-inputs-alist nil)
+

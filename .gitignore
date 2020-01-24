@@ -13,8 +13,9 @@ tramp
 .\#*
 /backups/
 /eshell/
-recentf
-savehist
+/recentf
+/savehist
+/custom-variables.el
 
 # Org-mode
 .org-id-locations

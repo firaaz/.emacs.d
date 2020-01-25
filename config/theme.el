@@ -13,10 +13,12 @@
 
 (use-package heaven-and-hell
   :init
-  (setq heaven-and-hell-theme-type 'dark)
+  (setq heaven-and-hell-theme-type 'light)
   (setq heaven-and-hell-themes
-	'((light . doom-solarized-light)
+	'((light . doom-nord-light)
 	  (dark . doom-dark+)))
   (setq heaven-and-hell-load-theme-no-confirm t)
   :hook (after-init . heaven-and-hell-init-hook)
   :bind ("C-C t t" . heaven-and-hell-toggle-theme))
+
+(use-package rainbow-mode)

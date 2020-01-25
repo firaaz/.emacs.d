@@ -1,7 +1,8 @@
 ;;; -*- lexical-binding: t -*-
 
 (defun my/config-file ()
+  "Opens a fuzzy matching minibuffer into config folder"
   (interactive)
-  (counsel-find-file "~/.emacs.d/"))
+  (counsel-projectile (cd "~/.emacs.d")))
 
 (global-set-key (kbd "C-c f p") 'my/config-file)

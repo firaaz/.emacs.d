@@ -2,6 +2,7 @@
 
 *~
 \#*\#
+.\#*
 /.emacs.desktop
 /.emacs.desktop.lock
 *.elc
@@ -10,12 +11,12 @@
 /straight/
 /transient/
 tramp
-.\#*
 /backups/
 /eshell/
 recentf
 savehist
 /custom-variables.el
+personal-info.el
 
 # Org-mode
 .org-id-locations

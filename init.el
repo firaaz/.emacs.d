@@ -45,3 +45,8 @@
       (concat (file-name-directory user-init-file) "custom-variables.el"))
 (when (file-exists-p custom-file)
   (load custom-file))
+
+(setq personal-info-file
+      (concat (file-name-directory user-init-file) "personal-info"))
+(when (file-exists-p personal-info-file)
+  (load personal-info-file))

@@ -9,4 +9,7 @@
   (interactive)
   (my/fuzzy-project-file-finder "~/.emacs.d/"))
 
+
 (global-set-key (kbd "C-c f p") 'my/config-file)
+(global-set-key (kbd "C-x w") 'fixup-whitespace)
+(global-set-key (kbd "C-c t l") (lambda () (interactive) (linum-mode))) ; to toggle line numbers (why is toggle not working)

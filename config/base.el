@@ -40,17 +40,3 @@
 
 ;; to try package and without it persisting
 (use-package try)
-
-(use-package editorconfig
-  :config
-  :hook (prog-mode . editorconfig-mode))
-(setq-default
- vc-follow-symlinks t
- save-interprogram-paste-before-kill t
- fill-column 80
- sentence-end-double-space nil
- word-wrap t
- indent-tabs-mode nil
- require-final-newline t
- tab-always-indent t
- tab-width 4)

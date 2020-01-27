@@ -2,6 +2,7 @@
 (use-package which-key
   :init (which-key-mode))
 
+
 (use-package doom-themes)
 
 (use-package doom-modeline
@@ -22,7 +23,7 @@
   :init
   (setq heaven-and-hell-theme-type 'light)
   (setq heaven-and-hell-themes
-	'((light . adwaita)
+	'((light . doom-solarized-light)
 	  (dark . doom-material)))
   (setq heaven-and-hell-load-theme-no-confirm t)
   :hook (after-init . heaven-and-hell-init-hook)

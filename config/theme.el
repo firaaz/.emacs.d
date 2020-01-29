@@ -21,7 +21,7 @@
 
 (use-package heaven-and-hell
   :init
-  (setq heaven-and-hell-theme-type 'light)
+  (setq heaven-and-hell-theme-type 'dark)
   (setq heaven-and-hell-themes
 	'((light . doom-solarized-light)
 	  (dark . doom-material)))

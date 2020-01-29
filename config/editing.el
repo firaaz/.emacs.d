@@ -38,3 +38,5 @@
 
 (require 'emacs-surround)
 (global-set-key (kbd "C-q") 'emacs-surround) ; originally quoted-insert, use M-x to use it
+
+(use-package undo-tree)

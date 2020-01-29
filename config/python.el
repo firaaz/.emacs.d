@@ -35,3 +35,7 @@
 (use-package anaconda-mode)
 
 (use-package company-anaconda)
+
+(use-package pip-requirements)          ; major mode for Pipfiles
+
+

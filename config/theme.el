@@ -26,3 +26,5 @@
 
 (use-package vi-tilde-fringe
   :hook (prog-mode . vi-tilde-fringe-mode))
+
+(use-package writeroom-mode)

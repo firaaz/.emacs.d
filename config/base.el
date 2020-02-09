@@ -16,7 +16,7 @@
 (column-number-mode t)                  ; show column numbers
 
 (winner-mode t)
-(defalias 'yes-or-no-p 'y-or-n-p)	; use y or n for minibuffer
+(defalias 'yes-or-no-p 'y-or-n-p)       ; use y or n for minibuffer
 
 (setq backup-directory-alist '(("." . "~/.emacs.d/backups"))
       delete-old-versions -1

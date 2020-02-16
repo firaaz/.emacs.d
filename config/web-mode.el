@@ -2,7 +2,9 @@
 
 (use-package emmet-mode)
 
-(use-package web-mode)
+(use-package web-mode
+  :config
+  ())
 
 (use-package company-web)
 
@@ -11,3 +13,6 @@
 (use-package less-css-mode)
 
 (use-package counsel-css)
+
+(add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+

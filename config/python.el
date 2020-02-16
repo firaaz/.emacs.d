@@ -41,3 +41,5 @@
 (use-package pyenv-mode
   :config
   (pyenv-mode))
+
+(use-package jinja2-mode)

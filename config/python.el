@@ -38,4 +38,6 @@
 
 (use-package pip-requirements)          ; major mode for Pipfiles
 
-
+(use-package pyenv-mode
+  :config
+  (pyenv-mode))
